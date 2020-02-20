@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var connectDB = require('./config/db');
+const errorHandler = require('./middlewares/error');
 
 
 //Connect to mongoDB
@@ -23,5 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter);
+
+app.use(errorHandler);
 
 module.exports = app;
