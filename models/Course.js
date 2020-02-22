@@ -3,11 +3,13 @@ const mongoose = require('mongoose');
 const CourseSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true,
+        unique: true,
+        required: [true, 'is required.'],
     },
     url_vimeo: {
         type: String,
-        required: true
+        unique: true,
+        required: [true, 'is required.'],
     },
     duration: Number,
     authors: [
@@ -23,7 +25,7 @@ const CourseSchema = new mongoose.Schema({
     },
     level: String,
     categories: [String],
-    private: Boolean,
+    access: String,
     creatAt: {
         type: Date,
         default: Date.now
@@ -37,4 +39,4 @@ const CourseSchema = new mongoose.Schema({
 
 });
 
-module.exports = CourseSchema;
+module.exports = mongoose.model('Course', CourseSchema);
