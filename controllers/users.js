@@ -1,18 +1,15 @@
 const User = require('../models/User');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middlewares/async');
+const advancedResults = require('../middlewares/advancedResults');
 
 //@desc Get all users
 //@route GET /api/v1/users
 //access Private for admins only
-exports.getAllUsers = asyncHandler(async (req, res, next) => {
-    const users = await User.find();
+exports.getAllUsers = [advancedResults(User), asyncHandler(async (req, res, next) => {
 
-    res.status(200).json({
-        success: true,
-        data: users,
-    });
-})
+    res.status(200).json(res.advancedResults);
+})];
 
 //@desc Get a user with ID
 //@route GET /api/v1/users/:id
