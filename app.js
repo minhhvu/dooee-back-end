@@ -5,7 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var connectDB = require('./config/db');
 const errorHandler = require('./middlewares/error');
+const dotenv = require('dotenv');
 
+dotenv.config({path: './config/config.env'});
 
 //Connect to mongoDB
 connectDB();
