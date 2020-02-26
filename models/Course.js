@@ -30,12 +30,11 @@ const CourseSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    createBy: {
-        type: {
-            name: String,
-            userId: String
-        }
-    }
+    owner: {
+        type: mongoose.Schema.ObjectID,
+        ref: 'User',
+        required: true
+    },
 
 });
 

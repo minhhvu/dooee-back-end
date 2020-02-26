@@ -17,6 +17,7 @@ exports.getAllCourses = asyncHandler(async (req, res, next) => {
 //@route POST /api/v1/courses/
 //@access Private for admins or lecturers
 exports.createCourse = asyncHandler(async (req, res, next) => {
+
     const user = await Course.create(req.body);
 
     res.status(201).json({

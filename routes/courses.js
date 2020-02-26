@@ -1,7 +1,7 @@
 var express = require('express');
 const router = express.Router();
 const {getAllCourses, createCourse} = require('../controllers/courses');
-const protect = require('../middlewares/auth');
+const {protect} = require('../middlewares/auth');
 
 //@route /api/v1/courses
 

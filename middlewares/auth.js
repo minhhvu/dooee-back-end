@@ -6,7 +6,7 @@ const User = require('../models/User');
 
 //Protect Route
 
-const protect = asyncHandler(async (req, res, next) => {
+exports.protect = asyncHandler(async (req, res, next) => {
     let token;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
@@ -32,4 +32,16 @@ const protect = asyncHandler(async (req, res, next) => {
 
 });
 
-module.exports = protect;
+//Grant access to the specific roles
+exports.authorize = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.role)){
+            return next(new ErrorResponse(
+                `User role ${req.user.role} is not authorized to access this route.`,
+                403
+            ))
+        }
+
+        next();
+    }
+}
