@@ -31,11 +31,10 @@ const CourseSchema = new mongoose.Schema({
         default: Date.now
     },
     owner: {
-        type: mongoose.Schema.ObjectID,
+        type: mongoose.Schema.ObjectId,
         ref: 'User',
         required: true
-    },
-
+    }
 });
 
 module.exports = mongoose.model('Course', CourseSchema);
