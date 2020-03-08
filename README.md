@@ -1,6 +1,6 @@
 # dooee-web-app
 
-Build RESTful API for back end of the online course web app. 
+## Build RESTful API for back end of the online course web app. 
 
 ### Courses
 - List all courses
