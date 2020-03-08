@@ -1,7 +1,7 @@
 const Course = require('../models/Course');
 const asyncHandler = require('../middlewares/async');
 const advancedResults = require('../middlewares/advancedResults');
-// const {authorize, protect} = require('../middlewares/auth')
+const ErrorResponse = require('../utils/errorResponse');
 
 //@Desc Get all courses
 //@route GET /api/v1/courses/
@@ -38,10 +38,54 @@ exports.getSingleCourse = asyncHandler( async (req, res, next) => {
     })
 })
 
-//@Desc
-//@route
-//@access
+//@Desc Update course information
+//@route /api/v1/courses/:id
+//@access Private (only owner)
+exports.updateCourse = asyncHandler(async (req, res, next) => {
+    //Check for ownership
+    let course = await Course.findOne({_id: req.params.id});
 
-//@Desc
-//@route
-//@access
+    if (!course) {
+        return next(new ErrorResponse ('Invalid Course Id', 404));
+    }
+
+    if (course.owner.toString() !== req.user.id) {
+        return next(new ErrorResponse('Not authorized to update course.', 401));
+    }
+
+    //Update on database
+    const data = req.body;
+    ['_id', 'owner', 'creatAt'].forEach(field => delete data[field]); //Fields are not allowed to update
+    course = await  Course.findByIdAndUpdate(req.params.id, data)
+
+    //Return response
+    res.status(200).json({
+        success: true,
+        data: course
+    })
+})
+
+//@Desc Delete course
+//@route /api/v1/courses/:id
+//@access Private (only for owner)
+
+exports.deleteCourse = asyncHandler(async (req, res, next) => {
+    //Check for ownership
+    let course = await Course.findOne({_id: req.params.id});
+
+    if (!course) {
+        return next(new ErrorResponse ('Invalid Course Id', 404));
+    }
+
+    if (course.owner.toString() !== req.user.id) {
+        return next(new ErrorResponse('Not authorized to update course.', 401));
+    }
+
+    await Course.findByIdAndDelete(req.params.id);
+
+    //Return response
+    res.status(200).json({
+        success: true,
+        data: course
+    })
+})
