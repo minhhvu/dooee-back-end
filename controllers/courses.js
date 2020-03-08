@@ -17,8 +17,6 @@ exports.createCourse = asyncHandler(async (req, res, next) => {
     const courseInfor = {...req.body};
     courseInfor.owner = req.user.id;
 
-    console.log(req.user);
-
     const user = await Course.create(courseInfor);
 
     res.status(201).json({
@@ -27,9 +25,18 @@ exports.createCourse = asyncHandler(async (req, res, next) => {
     })
 })
 
-//@Desc
-//@route
-//@access
+//@Desc Get single course
+//@route GET /api/v1/courses/:id
+//@access Private
+
+exports.getSingleCourse = asyncHandler( async (req, res, next) => {
+    const course = await Course.findById(req.params.id).select('-owner -creatAt');
+
+    res.status(200).json({
+        success: true,
+        data: course
+    })
+})
 
 //@Desc
 //@route
