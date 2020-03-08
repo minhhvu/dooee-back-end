@@ -2,7 +2,7 @@
 
 ## Build RESTful API for back end of the online course web app. 
 
-### Courses (Working)
+### Courses (Done)
 - List all courses
 - List all courses in general
    * Pagination
