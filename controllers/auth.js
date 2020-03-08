@@ -121,8 +121,6 @@ exports.resetPassword = asyncHandler( async (req, res, next) =>{
         return next(new ErrorResponse('Invalid Token', 400));
     }
 
-    console.log(user);
-
     //Set New Password
     user.password = req.body.password;
     user.resetPasswordExpire = undefined;
