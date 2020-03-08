@@ -49,6 +49,17 @@ exports.login = asyncHandler(async (req, res, next) =>{
     sendTokenResponse(user, 200, {}, res);
 })
 
+//@desc Logout
+//@route GET /api/v1/auth/logout
+//@access private
+exports.logout = asyncHandler(async (req, res, next) => {
+
+    //Find User
+    const user = await User.findById(req.user.id);
+
+    sendTokenResponse(user, 200, 'You are logged out successfully.', res, 1000)
+})
+
 //@desc Get the current user information
 //@route GET /api/v1/auth/me
 //@access Private
@@ -131,12 +142,12 @@ exports.resetPassword = asyncHandler( async (req, res, next) =>{
 })
 
 //Send token from model, create cookie and return response
-const sendTokenResponse = (user, statusCode, data, res) => {
+const sendTokenResponse = (user, statusCode, data, res, milisecond = 24*60*60*1000) => {
     //Create a token
     const token =  user.getSignedWebToken();
 
     const options = {
-        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE *24*60*60*1000),
+        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * milisecond),
         httpOnly: true
     }
 

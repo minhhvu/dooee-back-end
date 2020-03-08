@@ -17,6 +17,8 @@ exports.createCourse = asyncHandler(async (req, res, next) => {
     const courseInfor = {...req.body};
     courseInfor.owner = req.user.id;
 
+    console.log(req.user);
+
     const user = await Course.create(courseInfor);
 
     res.status(201).json({
