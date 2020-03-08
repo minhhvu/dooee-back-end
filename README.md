@@ -5,7 +5,10 @@ Build RESTful API for back end of the online course web app.
 ### Courses
 - List all courses
 - List all courses in general
-  * Pagination, filtering, etc
+   * Pagination
+   * Select specific fields in result
+   * Limit number of results
+   * Filter by fields
 - Get single course
 - Create new course
   * Authenticated users only
@@ -43,3 +46,45 @@ Build RESTful API for back end of the online course web app.
 - User CRUD
   * Admin only
 - Users can only be made admin by updating the database field manually
+
+### Learning Tracks
+- List all tracks in the database
+  * Pagination, filtering, etc
+- Get single tracks
+- Create new tracks
+  * Authenticated users only
+  * Must have the role "publisher" or "admin"
+  * Only one tracks per publisher (admins can create more)
+  * Field validation via Mongoose
+- Upload a photo for bootcamp
+  * Owner only
+  * Photo will be uploaded to local filesystem
+- Update tracks
+  * Owner only
+  * Validation on update
+- Delete Bootcamp
+  * Owner only
+- Calculate the average rating from the reviews for a bootcamp
+
+## Security
+- Encrypt passwords and reset tokens
+- Prevent cross site scripting - XSS
+- Prevent NoSQL injections
+- Add a rate limit for requests of 100 requests per 10 minutes
+- Protect against http param polution
+- Add headers for security (helmet)
+- Use cors to make API public (for now)
+
+## Documentation
+- Use Postman to create documentation
+- Use docgen to create HTML files from Postman
+- Add html files as the / route for the api
+
+## Testing
+- Unit Testing: using jet framework
+- Integration Testing: using supertest to test middleware and routes
+- Test-Drive Deployment
+
+## Deployment
+- Build EC2 on aws
+- Deploy the server on EC2
