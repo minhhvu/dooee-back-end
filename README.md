@@ -2,7 +2,7 @@
 
 ## Build RESTful API for back end of the online course web app. 
 
-### Courses
+### Courses (Working)
 - List all courses
 - List all courses in general
    * Pagination
@@ -20,7 +20,7 @@
 - Delete course
   * Owner only
 
-### Users & Authentication, Authorization
+### Users & Authentication, Authorization (Done)
 - Authentication will be ton using JWT/cookies
   * JWT and cookie should expire in 30 days
 - User registration
@@ -47,7 +47,7 @@
   * Admin only
 - Users can only be made admin by updating the database field manually
 
-### Learning Tracks
+### Learning Tracks (Not yet)
 - List all tracks in the database
   * Pagination, filtering, etc
 - Get single tracks
@@ -66,7 +66,7 @@
   * Owner only
 - Calculate the average rating from the reviews for a bootcamp
 
-## Security
+## Security (Not yet)
 - Encrypt passwords and reset tokens
 - Prevent cross site scripting - XSS
 - Prevent NoSQL injections
@@ -75,15 +75,15 @@
 - Add headers for security (helmet)
 - Use cors to make API public (for now)
 
-## Documentation
-- Use Postman to create documentation
-- Use docgen to create HTML files from Postman
-- Add html files as the / route for the api
-
 ## Testing
 - Unit Testing: using jet framework
 - Integration Testing: using supertest to test middleware and routes
 - Test-Drive Deployment
+
+## Documentation
+- Use Postman to create documentation
+- Use docgen to create HTML files from Postman
+- Add html files as the / route for the api
 
 ## Deployment
 - Build EC2 on aws
