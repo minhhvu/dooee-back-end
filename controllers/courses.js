@@ -7,7 +7,7 @@ const ErrorResponse = require('../utils/errorResponse');
 //@route GET /api/v1/courses/
 //@access Public
 exports.getAllCourses = [advancedResults(Course), asyncHandler(async (req, res, next) => {
-    res.status(200).json(res.advancedResults)
+    res.status(200).json(res.advancedResults);
 })]
 
 //@Desc Create a new course
