@@ -2,13 +2,14 @@ const {getTracks, createTrack, getSingleTrack, updateTrack, deleteTrack} = requi
 const {protect, authorize} = require('../middlewares/auth');
 const express = require('express');
 const router = express.Router();
+const {admin, lecturer, student} = require('../config/roles');
 
 router.use(protect);
 
 router
     .route('/')
     .get(getTracks)
-    .post(authorize('admin'), createTrack);
+    .post(authorize(admin, lecturer), createTrack);
 
 router
     .route('/:id')

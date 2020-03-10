@@ -2,6 +2,7 @@ const Track = require('../models/Track');
 const advancedResults= require('../middlewares/advancedResults');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middlewares/async');
+const {admin, lecturer, student} = require('../config/roles');
 
 
 //@desc Get all track
@@ -57,7 +58,7 @@ exports.updateTrack = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse('Invalid Track Id'), 400);
     }
 
-    if (track.owner.toString() !== req.user.id){
+    if (track.owner.toString() !== req.user.id || req.user.role.toString() !== admin){
         return next(new ErrorResponse('Not authorized to update course.', 401));
     }
 
@@ -75,7 +76,7 @@ exports.updateTrack = asyncHandler(async (req, res, next) => {
 
 //@desc Delete a track
 //@route PUT /api/v1/tracks/:id
-//@access Private (only for owner)
+//@access Private (only for owner or admin)
 exports.deleteTrack = asyncHandler(async (req, res, next) => {
     let track = await Track.findById(req.params.id);
 
@@ -83,7 +84,7 @@ exports.deleteTrack = asyncHandler(async (req, res, next) => {
         return next(new ErrorResponse('Invalid Track Id'), 400);
     }
 
-    if (track.owner.toString() !== req.user.id){
+    if (track.owner.toString() !== req.user.id || req.user.role !== 'admin'){
         return next(new ErrorResponse('Not authorized to update course.', 401));
     }
 
