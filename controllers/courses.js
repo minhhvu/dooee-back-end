@@ -56,7 +56,7 @@ exports.updateCourse = asyncHandler(async (req, res, next) => {
     //Update on database
     const data = req.body;
     ['_id', 'owner', 'creatAt'].forEach(field => delete data[field]); //Fields are not allowed to update
-    course = await  Course.findByIdAndUpdate(req.params.id, data)
+    course = await  Course.findByIdAndUpdate(req.params.id, data, {new: true})
 
     //Return response
     res.status(200).json({
