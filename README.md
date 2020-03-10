@@ -52,13 +52,7 @@
   * Pagination, filtering, etc
 - Get single tracks
 - Create new tracks
-  * Authenticated users only
-  * Must have the role "publisher" or "admin"
-  * Only one tracks per publisher (admins can create more)
-  * Field validation via Mongoose
-- Upload a photo for bootcamp
-  * Owner only
-  * Photo will be uploaded to local filesystem
+  * Must have the role "admin"
 - Update tracks
   * Owner only
   * Validation on update
