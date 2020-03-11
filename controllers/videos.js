@@ -8,7 +8,7 @@ const {admin, lecturer, student} = require('../config/roles');
 //@desc Get all videos
 //@route GET /api/v1/videos
 //@access Private (only admins)
-exports.getvideos = [advancedResults(Video), asyncHandler(async (req, res, next) => {
+exports.getVideos = [advancedResults(Video), asyncHandler(async (req, res, next) => {
     res.status(200).json(res.advancedResults);
 })]
 
@@ -16,7 +16,7 @@ exports.getvideos = [advancedResults(Video), asyncHandler(async (req, res, next)
 //@desc Create a video
 //@route POST /api/v1/videos
 //@access Private (only for admins or lecturers)
-exports.createvideo = asyncHandler(async (req, res, next) => {
+exports.createVideo = asyncHandler(async (req, res, next) => {
     //Manage the fields
     const reqBody = {...req.body};
     ['owner', 'students'].forEach(field => delete reqBody[field]);
@@ -35,7 +35,7 @@ exports.createvideo = asyncHandler(async (req, res, next) => {
 //@desc get a video
 //@route GET /api/v1/videos/:id
 //@access Private
-exports.getSinglevideo = asyncHandler(async (req, res, next) => {
+exports.getSingleVideo = asyncHandler(async (req, res, next) => {
     const video = await Video.findById(req.params.id);
 
     if (!video) {
@@ -51,7 +51,7 @@ exports.getSinglevideo = asyncHandler(async (req, res, next) => {
 //@desc Update a video
 //@route PUT /api/v1/videos/:id
 //@access Private (only for owner or admin)
-exports.updatevideo = asyncHandler(async (req, res, next) => {
+exports.updateVideo = asyncHandler(async (req, res, next) => {
     let video = await Video.findById(req.params.id);
 
     if (!video) {
@@ -77,7 +77,7 @@ exports.updatevideo = asyncHandler(async (req, res, next) => {
 //@desc Delete a video
 //@route PUT /api/v1/videos/:id
 //@access Private (only for owners or admins)
-exports.deletevideo = asyncHandler(async (req, res, next) => {
+exports.deleteVideo = asyncHandler(async (req, res, next) => {
     let video = await Video.findById(req.params.id);
 
     if (!video) {
