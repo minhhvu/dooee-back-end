@@ -47,24 +47,18 @@
   * Admin only
 - Users can only be made admin by updating the database field manually
 
-### Learning Tracks (Not yet)
-- List all tracks in the database
+### Videos (Not yet)
+- List all videos in the database
   * Pagination, filtering, etc
-- Get single tracks
-- Create new tracks
-  * Authenticated users only
-  * Must have the role "publisher" or "admin"
-  * Only one tracks per publisher (admins can create more)
-  * Field validation via Mongoose
-- Upload a photo for bootcamp
-  * Owner only
-  * Photo will be uploaded to local filesystem
+- Get single video
+- Create new video
+  * Must have the role "admin" or "lecturer"
 - Update tracks
-  * Owner only
+  * Owner/admin only
   * Validation on update
 - Delete Bootcamp
-  * Owner only
-- Calculate the average rating from the reviews for a bootcamp
+  * Owner/admin only
+- Get videos from a course
 
 ## Security (Not yet)
 - Encrypt passwords and reset tokens
