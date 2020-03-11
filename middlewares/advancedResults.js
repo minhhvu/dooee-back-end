@@ -28,7 +28,7 @@ const advancedResults = (model, populate) => async (req, res, next) => {
         const fields = req.query.sort.split(',').join(' ');
         query = query.sort(fields);
     } else {
-        query = query.sort('-createAt');
+        query = query.sort('-createAt');//Sort by time 
     }
 
     //Pagination

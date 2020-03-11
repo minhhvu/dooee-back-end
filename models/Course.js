@@ -6,15 +6,7 @@ const CourseSchema = new mongoose.Schema({
         unique: true,
         required: [true, 'is required.'],
     },
-    url_vimeo: {
-        type: String,
-        unique: true,
-        required: [true, 'is required.'],
-    },
     duration: Number,
-    authors: [
-        {name: String, user_id: String}
-    ],
     language: String,
     subtitle: [String],
     tags: [String],
@@ -30,11 +22,13 @@ const CourseSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    owner: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User',
-        required: true
-    }
+    owner: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: 'User',
+            required: true
+        }
+    ]
 });
 
 module.exports = mongoose.model('Course', CourseSchema);
