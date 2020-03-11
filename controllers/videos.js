@@ -12,6 +12,13 @@ exports.getVideos = [advancedResults(Video), asyncHandler(async (req, res, next)
     res.status(200).json(res.advancedResults);
 })]
 
+//@desc Get all videos with the same course id
+//@route GET /api/v1/courses/:id/videos
+//@access Private
+exports.getVideosOfACourse = asyncHandler(async (req, res, next) => {
+    res.redirect('/api/v1/videos?course='+req.params.id);
+})
+
 
 //@desc Create a video
 //@route POST /api/v1/videos

@@ -19,7 +19,7 @@ const VideoSchema = new mongoose.Schema({
     language: String,
     subtitle: [String],
     tags: [String],
-    courses:{
+    course:{
         type: mongoose.Schema.ObjectId,
         ref: 'Course'
     },
