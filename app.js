@@ -18,6 +18,7 @@ var usersRouter = require('./routes/users');
 var coursesRouter = require('./routes/courses');
 var authRouter = require('./routes/auth');
 var trackRouter = require('./routes/tracks');
+var videoRouter = require('./routes/videos');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/api/v1/users', usersRouter);
 app.use('/api/v1/courses', coursesRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/tracks', trackRouter);
+app.use('/api/v1/videos', videoRouter);
 
 app.use(errorHandler);
 
