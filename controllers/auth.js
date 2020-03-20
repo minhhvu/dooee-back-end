@@ -54,10 +54,15 @@ exports.login = asyncHandler(async (req, res, next) =>{
 //@access private
 exports.logout = asyncHandler(async (req, res, next) => {
 
-    //Find User
-    const user = await User.findById(req.user.id);
+    res.cookie('token', 'none', {
+        expire: new Date(Date.now() + 10 * 1000), //Expire for 10 seconds
+        httpOnly: true
+    })
 
-    sendTokenResponse(user, 200, 'You are logged out successfully.', res, 1000)
+    res.status(200).json({
+        success: true,
+        data: {}
+    })
 })
 
 //@desc Get the current user information
