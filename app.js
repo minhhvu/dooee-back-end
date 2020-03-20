@@ -6,6 +6,9 @@ var logger = require('morgan');
 var connectDB = require('./config/db');
 const errorHandler = require('./middlewares/error');
 const dotenv = require('dotenv');
+const helmet = require('helmet');
+const sanitize = require('express-mongo-sanitize');
+const xssClean = require('xss-clean');
 
 dotenv.config({path: './config/config.env'});
 
@@ -27,6 +30,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//Prevent XSS threat
+app.use(helmet());
+app.use(xssClean());
+
+//Sanitize data
+app.use(sanitize());
 
 app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter);
