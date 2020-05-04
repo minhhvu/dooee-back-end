@@ -60,7 +60,7 @@
   * Owner/admin only
 - Get videos from a course
 
-## Security (Not yet)
+## Security
 - Encrypt passwords and reset tokens
 - Prevent cross site scripting - XSS
 - Prevent NoSQL injections
@@ -69,16 +69,3 @@
 - Add headers for security (helmet)
 - Use cors to make API public (for now)
 
-## Testing
-- Unit Testing: using jet framework
-- Integration Testing: using supertest to test middleware and routes
-- Test-Drive Deployment
-
-## Documentation
-- Use Postman to create documentation
-- Use docgen to create HTML files from Postman
-- Add html files as the / route for the api
-
-## Deployment
-- Build EC2 on aws
-- Deploy the server on EC2
